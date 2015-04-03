@@ -8,7 +8,7 @@ char server[] = "i.icoolpy.com";
 //Server port
 int port = 1338;
 //mqtt authentication by user key
-char ukey[] = "3aa6bdfb-8b94-49e3-ad16-62bdc070f091";
+char ukey[] = "3aa6bdfb-8b94-49e3-ad16";
 //Device ID
 char device[]="5";
 //Sensor ID
