@@ -14,3 +14,5 @@ Coolpy的arduino开发应用例示代码，官方网站 http://icoolpy.com
 6.switch_data_point 开关控制器操作示例
 
 7.value_data_point 数值传感器操作示例
+
+8.mqtt_switch_gen_range_controler mqtt支持的开关、泛型控制器、数值控制器示例
