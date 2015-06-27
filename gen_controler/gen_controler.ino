@@ -9,16 +9,16 @@
 #include <Ethernet.h>
 
 byte mac[6];
-//Server UrL
-char server[] = "api.icoolpy.com";
-//Server port
+//服务器域名或IP地址
+char server[] = "i.icoolpy.com";
+//服务器端口号
 int port = 1337;
-//User Access Key
-char ukey[] = "54925256cbfa3e7006e59088";
-//Device ID
-char device[]="1";
-//Sensor ID
-char sensor[]="5";
+//UserKey用户密钥(必改项)
+char ukey[] = "549232b9539207700c7f0361";
+//Hub ID(必改项)
+char hub[]="1";
+//Node ID(必改项)
+char node[]="9";
 
 EthernetClient client;
 
@@ -72,10 +72,10 @@ void loop()
       }else{
        isOnData = false;
        
-        ///finish read data from coolpy server
+        //显示请求返回内容
         Serial.println("");
         Serial.println(inStr);
-     //only edit in here ^^ begin
+     //根据请求结果判断LED开或关
         if(inStr.startsWith("{\"value\":\"on\"}")){
           digitalWrite(led, HIGH);
         }else if(inStr.startsWith("{\"value\":\"off\"}")){
@@ -111,10 +111,10 @@ void httpRequest() {
   // if you get a connection, report back via serial:
   if (client.connect(server, port)) {
     // Make a HTTP request:
-    client.print("GET /v1.0/device/");
-    client.print(device);
-    client.print("/sensor/");
-    client.print(sensor);
+    client.print("GET /v1.0/hub/");
+    client.print(hub);
+    client.print("/node/");
+    client.print(node);
     client.print("/datapoint");
     client.print("?time=");
     client.print(random(1, 50000));

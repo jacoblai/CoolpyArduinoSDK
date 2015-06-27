@@ -3,16 +3,16 @@
 #include <PubSubClient.h>
 
 byte mac[6];
-//Server UrL
+//服务器域名或IP地址
 char server[] = "i.icoolpy.com";
-//Server port
-int port = 1338;
-//mqtt authentication by user key
-char ukey[] = "3aa6bdfb-8b94-49e3-ad16";
-//Device ID
-char device[]="5";
-//Sensor ID
-char sensor[]="20";
+//服务器端口号
+int port = 1337;
+//UserKey用户密钥(必改项)
+char ukey[] = "549232b9539207700c7f0361";
+//Hub ID(必改项)
+char hub[]="1";
+//Node ID(必改项)
+char node[]="9";
 //byte server[] = { 192, 168, 1, 179 };
 
 String instr;
@@ -30,9 +30,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
     char c = payload[i];
     instr += c;
   }
+  //显示所有数据
   Serial.println(instr);
   
-  //only edit in here ^^ begin
+  //根据内容判断LED的开或关
         if(instr.startsWith("{\"value\":\"1\"}")){
           digitalWrite(led, HIGH);
         }else if(instr.startsWith("{\"value\":\"0\"}")){
@@ -70,10 +71,10 @@ void setup()
   if (client.connect(charBuf)) {
     //client.publish("outTopic","hello world");
     outstr = String(ukey);
-    outstr += "/device/";
-    outstr += device;
-    outstr += "/sensor/";
-    outstr += sensor;
+    outstr += "/hub/";
+    outstr += hub;
+    outstr += "/node/";
+    outstr += node;
     outstr += "/datapoint";
     char charBuf1[outstr.length()+1];
     outstr.toCharArray(charBuf1, outstr.length()+1);

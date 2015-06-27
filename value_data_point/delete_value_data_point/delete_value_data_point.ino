@@ -9,17 +9,17 @@
 #include <Ethernet.h>
 
 byte mac[6];
-//Server UrL
-char server[] = "api.icoolpy.com";
-//Server port
+//服务器域名或IP地址
+char server[] = "i.icoolpy.com";
+//服务器端口号
 int port = 1337;
-//User Access Key
+//UserKey用户密钥(必改项)
 char ukey[] = "549232b9539207700c7f0361";
-//Device ID
-char device[]="1";
-//Sensor ID
-char sensor[]="9";
-//Gen data point key
+//Hub ID(必改项)
+char hub[]="1";
+//Node ID(必改项)
+char node[]="9";
+//数据结点Key值(必改项)
 char dpkey[] = "2012-03-15T16:13:14";
 
 EthernetClient client;
@@ -43,10 +43,10 @@ void setup() {
   // if you get a connection, report back via serial:
   if (client.connect(server, port)) {
     // Make a HTTP request:
-    client.print("DELETE /v1.0/device/");
-    client.print(device);
-    client.print("/sensor/");
-    client.print(sensor);
+    client.print("DELETE /v1.0/hub/");
+    client.print(hub);
+    client.print("/node/");
+    client.print(node);
     client.print("/datapoint/");
     client.print(dpkey);
     client.println(" HTTP/1.1");
@@ -87,7 +87,7 @@ void loop()
       }else{
        isOnData = false;
        
-        ///finish read data from coolpy server
+        //完成操作显示所有数据
         Serial.println("");
         Serial.println(inStr);  
       

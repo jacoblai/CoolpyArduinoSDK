@@ -9,16 +9,16 @@
 #include <Ethernet.h>
 
 byte mac[6];
-//Server UrL
-char server[] = "api.icoolpy.com";
-//Server port
+//服务器域名或IP地址
+char server[] = "i.icoolpy.com";
+//服务器端口号
 int port = 1337;
-//User Access Key
-char ukey[] = "54925256cbfa3e7006e59088";
-//Device ID
-char device[]="1";
-//Sensor ID
-char sensor[]="3";
+//UserKey用户密钥(必改项)
+char ukey[] = "549232b9539207700c7f0361";
+//Hub ID(必改项)
+char hub[]="1";
+//Node ID(必改项)
+char node[]="9";
 
 EthernetClient client;
 
@@ -39,7 +39,7 @@ void setup() {
   delay(1000);
   
   char buffer[25];
-  //Edit here code to your Customs must be json string
+  //修改此处代码编辑要发送的内容
   //"{\"key\":\"mygpskey\",\"value\":{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}}"
   String json = "";
   json += String("{\"key\":\"mygpskey\",\"value\":{\"sensor\":\"gps \",\"time\":") 
@@ -63,7 +63,7 @@ void loop()
       isOnData = false;
       inStr += c;
       
-      ///finish read data from coolpy server
+      //显示请求返回内容
       Serial.println("");
       Serial.println(inStr); 
       
@@ -88,10 +88,10 @@ void Post(String PostData)
 // if you get a connection, report back via serial:
   if (client.connect(server, port)) {
     // Make a HTTP request:
-    client.print("POST /v1.0/device/");
-    client.print(device);
-    client.print("/sensor/");
-    client.print(sensor);
+    client.print("POST /v1.0/hub/");
+    client.print(hub);
+    client.print("/node/");
+    client.print(node);
     client.println("/datapoints HTTP/1.1");
     client.print("Host:");
     client.println(server);
