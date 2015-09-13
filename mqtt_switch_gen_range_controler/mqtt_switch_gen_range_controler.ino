@@ -6,7 +6,7 @@ byte mac[6];
 //服务器域名或IP地址
 char server[] = "i.icoolpy.com";
 //服务器端口号
-int port = 1337;
+int port = 1338;
 //UserKey用户密钥(必改项)
 char ukey[] = "549232b9539207700c7f0361";
 //Hub ID(必改项)
